@@ -1,0 +1,32 @@
+[
+    {
+        "model": "cultureallapi.CultUser",
+        "pk": 1,
+        "fields": {
+            "company_name": "CultureAll",
+            "phone_number": "210-912-7220",
+            "terms_signed": true,
+            "user": 1
+        }
+    },
+    {
+        "model": "cultureallapi.CultUser",
+        "pk": 2,
+        "fields": {
+            "company_name": "CultureAll",
+            "phone_number": "903-390-9032",
+            "terms_signed": true,
+            "user": 2
+        }
+    },
+    {
+        "model": "cultureallapi.CultUser",
+        "pk": 3,
+        "fields": {
+            "company_name": "Groove",
+            "phone_number": "123-456-7890",
+            "terms_signed": false,
+            "user": 3
+        }
+    }
+]

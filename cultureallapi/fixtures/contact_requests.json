@@ -1,0 +1,13 @@
+[
+    {
+        "model": "cultureallapi.ContactRequest",
+        "pk": 1,
+        "fields": {
+            "email": "me@me.com",
+            "first_name": "Me",
+            "last_name": "Me",
+            "phone_number": "404-404-4040",
+            "contact_by_phone": true
+        }
+    }
+]

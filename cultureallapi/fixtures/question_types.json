@@ -1,0 +1,30 @@
+[
+    {
+        "model": "cultureallapi.QuestionType",
+        "pk": 1,
+        "fields": {
+            "type": "Functional Job Support"
+        }
+    },
+    {
+        "model": "cultureallapi.QuestionType",
+        "pk": 2,
+        "fields": {
+            "type": "Professional Growth"
+        }
+    },
+    {
+        "model": "cultureallapi.QuestionType",
+        "pk": 3,
+        "fields": {
+            "type": "Company Culture"
+        }
+    },
+    {
+        "model": "cultureallapi.QuestionType",
+        "pk": 4,
+        "fields": {
+            "type": "Company Perks"
+        }
+    }
+]

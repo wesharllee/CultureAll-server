@@ -1,0 +1,162 @@
+[
+    {
+        "model": "cultureallapi.Question",
+        "pk": 1,
+        "fields": {
+            "question_text": "I do not feel stuck in my current role",
+            "question_type": 2
+        }
+    },
+    {
+        "model": "cultureallapi.Question",
+        "pk": 2,
+        "fields": {
+            "question_text": "My questions get clearly answered",
+            "question_type": 1
+        }
+    },
+    {
+        "model": "cultureallapi.Question",
+        "pk": 3,
+        "fields": {
+            "question_text": "I feel supported in my physical health/wellness",
+            "question_type": 4
+        }
+    },
+    {
+        "model": "cultureallapi.Question",
+        "pk": 4,
+        "fields": {
+            "question_text": "I know my company's values",
+            "question_type": 3
+        }
+    },
+    {
+        "model": "cultureallapi.Question",
+        "pk": 5,
+        "fields": {
+            "question_text": "I feel supported in my family benefits",
+            "question_type": 4
+        }
+    },
+    {
+        "model": "cultureallapi.Question",
+        "pk": 6,
+        "fields": {
+            "question_text": "I feel respected",
+            "question_type": 3
+        }
+    },
+    {
+        "model": "cultureallapi.Question",
+        "pk": 7,
+        "fields": {
+            "question_text": "“I have access to materials to learn more about my job/industry",
+            "question_type": 2
+        }
+    },
+    {
+        "model": "cultureallapi.Question",
+        "pk": 8,
+        "fields": {
+            "question_text": "I feel supported in my mental health/wellness",
+            "question_type": 4
+        }
+    },
+    {
+        "model": "cultureallapi.Question",
+        "pk":9,
+        "fields": {
+            "question_text": "I have a leader that I trust to help me grow",
+            "question_type": 2
+        }
+    },
+    {
+        "model": "cultureallapi.Question",
+        "pk": 10,
+        "fields": {
+            "question_text": "I feel happy at work",
+            "question_type": 3
+        }
+    },
+    {
+        "model": "cultureallapi.Question",
+        "pk": 11,
+        "fields": {
+            "question_text": "I feel supported by my management",
+            "question_type": 1
+        }
+    },
+    {
+        "model": "cultureallapi.Question",
+        "pk": 12,
+        "fields": {
+            "question_text": "I feel incentivized to excel",
+            "question_type": 2
+        }
+    },
+    {
+        "model": "cultureallapi.Question",
+        "pk": 13,
+        "fields": {
+            "question_text": "I know what is expected of me",
+            "question_type": 1
+        }
+    },
+    {
+        "model": "cultureallapi.Question",
+        "pk": 14,
+        "fields": {
+            "question_text": "My company is understanding and flexible when life happens",
+            "question_type": 3
+        }
+    },
+    {
+        "model": "cultureallapi.Question",
+        "pk": 15,
+        "fields": {
+            "question_text": "I am recognized/rewarded when I do my job well",
+            "question_type": 2
+        }
+    },
+    {
+        "model": "cultureallapi.Question",
+        "pk": 16,
+        "fields": {
+            "question_text": "I am happy with the communication in my company",
+            "question_type": 1
+        }
+    },
+    {
+        "model": "cultureallapi.Question",
+        "pk": 17,
+        "fields": {
+            "question_text": "My benefits are fair and sufficient",
+            "question_type": 4
+        }
+    },
+    {
+        "model": "cultureallapi.Question",
+        "pk": 18,
+        "fields": {
+            "question_text": "“My work/life balance is good",
+            "question_type": 3
+        }
+    },
+    {
+        "model": "cultureallapi.Question",
+        "pk": 19,
+        "fields": {
+            "question_text": "I feel supported in my financial goals",
+            "question_type": 4
+        }
+    },
+    {
+        "model": "cultureallapi.Question",
+        "pk": 20,
+        "fields": {
+            "question_text": "I have the equipment and technology necessary to do my job well",
+            "question_type": 1
+        }
+    }
+]
