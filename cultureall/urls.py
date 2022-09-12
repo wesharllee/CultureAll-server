@@ -16,13 +16,18 @@ Including another URLconf
 from django.contrib import admin
 from django.conf.urls import include
 from django.urls import path
-from cultureallapi.views import register_user, login_user, ConsultationRequestView
+from cultureallapi.views import register_user, login_user, ConsultationRequestView, ContactRequestView, QuestionView, QuestionTypeView, CultUserView
 from rest_framework import routers
+
+
 
 """remove need for / at the end of url"""
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'consultationrequests', ConsultationRequestView, 'consultationrequest')
-
+router.register(r'contactrequests', ContactRequestView, 'contactrequest')
+router.register(r'questions', QuestionView, 'question')
+router.register(r'questiontypes', QuestionTypeView, 'questiontype')
+router.register(r'users', CultUserView, 'user')
 
 urlpatterns = [
     path('register', register_user),

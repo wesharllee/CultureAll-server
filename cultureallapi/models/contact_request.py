@@ -5,4 +5,5 @@ class ContactRequest(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     phone_number = models.CharField(max_length=20)
+    reason = models.TextField()
     contact_by_phone = models.BooleanField()

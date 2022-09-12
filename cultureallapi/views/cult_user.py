@@ -3,7 +3,8 @@ from rest_framework.response import Response
 from rest_framework import serializers, status
 from rest_framework.decorators import action
 from django.contrib.auth.models import User
-from cultureallapi.models.cult_user import CultUser
+from cultureallapi.models import CultUser, Answer
+
 
 class CultUserView(ViewSet):
     """Cult User view"""
@@ -58,9 +59,18 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('id', 'username', 'first_name', 'last_name', 'email', 'is_staff')
         # ordering =  ['username']
 
+class AnswerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Answer
+        fields = ('id', 'rating_value', 'question')
+        depth = 2
+
+
 class CultUserSerializer(serializers.ModelSerializer):
     """JSON serializer for CultUsers"""
     user = UserSerializer()
+    answers = AnswerSerializer(many=True)
     class Meta:
         model = CultUser
-        fields = ('id', 'user', 'company_name', 'phone_number', 'terms_signed')
+        fields = ('id', 'user', 'company_name', 'phone_number', 'terms_signed', 'answers', 'question_types')
+        depth = 2

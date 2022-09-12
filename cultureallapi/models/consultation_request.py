@@ -5,5 +5,12 @@ class ConsultationRequest(models.Model):
     date = models.DateField()
     time = models.TimeField()
     in_person = models.BooleanField()
-    address = models.CharField(max_length=50)
+    address = models.CharField(max_length=50,null=True)
 
+    @property
+    def readable_time(self):
+        return self.time.strftime("%I:%M %p")
+
+    @property
+    def readable_date(self):
+        return self.date.strftime("%b %d, %Y")

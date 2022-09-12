@@ -30,16 +30,57 @@ class ConsultationRequestView(ViewSet):
 
         requests = ConsultationRequest.objects.all()
 
-        cult_user = CultUser.objects.get(user=request.auth.user)
-        for request in requests:
-            request.joined = cult_user in request.cult_user.all()
-
         serializer = ConsultationSerializer(requests, many=True)
         return Response(serializer.data)
 
+    def create(self, request):
+        """Handle Post operations
+
+        Returns:
+            response -- JSON serialized consultation request instance
+        """
+        cult_user = CultUser.objects.get(user=request.auth.user)
+
+        consultation_request = ConsultationRequest.objects.create(
+            cult_user=cult_user,
+            date=request.data["date"],
+            time=request.data["time"],
+            in_person=int(request.data["in_person"]),
+            address=request.data.get("address")
+        )
+
+        serializer = ConsultationSerializer(consultation_request)
+        return Response(serializer.data)
+
+    def update(self, request, pk):
+        """Handle PUT requests for a consultation
+
+        Returns:
+            Response -- Empty body with 204 status code
+        """
+
+        request = ConsultationRequest.objects.get(pk=pk)
+        request.date = request.data["date"]
+        request.time = request.data["time"]
+        request.in_person = request.data["in_person"]
+        request.address = request.data["address"]
+
+        cult_user = CultUser.objects.get(pk=request.auth.user)
+        request.cult_user = cult_user
+        request.save()
+
+        return Response(None, status=status.HTTP_204_NO_CONTENT)
+
+    def destroy(self, request, pk):
+        request = ConsultationRequest.objects.get(pk=pk)
+        request.delete()
+        return Response(None, status=status.HTTP_204_NO_CONTENT)
+
+    
 class ConsultationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ConsultationRequest
-        fields = ('id', 'cult_user', 'date', 'time', 'in_person', 'address')
+        fields = ('id', 'cult_user', 'date', 'time', 'in_person', 'address', 'readable_time', 'readable_date')
         depth = 2
+
