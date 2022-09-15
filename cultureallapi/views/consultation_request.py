@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework import serializers, status
 from cultureallapi.models import ConsultationRequest
 from cultureallapi.models.cult_user import CultUser
+from rest_framework.decorators import action
 
 class ConsultationRequestView(ViewSet): 
     """Consultation Request View"""
@@ -46,7 +47,8 @@ class ConsultationRequestView(ViewSet):
             date=request.data["date"],
             time=request.data["time"],
             in_person=int(request.data["in_person"]),
-            address=request.data.get("address")
+            address=request.data.get("address"),
+            completed=request.data["completed"]
         )
 
         serializer = ConsultationSerializer(consultation_request)
@@ -59,11 +61,12 @@ class ConsultationRequestView(ViewSet):
             Response -- Empty body with 204 status code
         """
 
-        request = ConsultationRequest.objects.get(pk=pk)
-        request.date = request.data["date"]
-        request.time = request.data["time"]
-        request.in_person = request.data["in_person"]
-        request.address = request.data["address"]
+        consult_request = ConsultationRequest.objects.get(pk=pk)
+        consult_request.date = request.data["date"]
+        consult_request.time = request.data["time"]
+        consult_request.in_person = request.data["in_person"]
+        consult_request.address = request.data["address"]
+        consult_request.completed = request.data["completed"]
 
         cult_user = CultUser.objects.get(pk=request.auth.user)
         request.cult_user = cult_user
@@ -76,11 +79,19 @@ class ConsultationRequestView(ViewSet):
         request.delete()
         return Response(None, status=status.HTTP_204_NO_CONTENT)
 
+    @action(methods=["put"], detail=True)
+    def change_completed_status(self, request, pk):
+        consult_request = ConsultationRequest.objects.get(pk=pk)
+        consult_request.completed = not consult_request.completed
+        consult_request.save()
+        serializer = ConsultationSerializer(consult_request)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
     
 class ConsultationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ConsultationRequest
-        fields = ('id', 'cult_user', 'date', 'time', 'in_person', 'address', 'readable_time', 'readable_date')
+        fields = ('id', 'cult_user', 'date', 'time', 'in_person', 'address', 'readable_time', 'readable_date', 'completed')
         depth = 2
 

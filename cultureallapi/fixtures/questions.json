@@ -51,7 +51,7 @@
         "model": "cultureallapi.Question",
         "pk": 7,
         "fields": {
-            "question_text": "“I have access to materials to learn more about my job/industry",
+            "question_text": "I have access to materials to learn more about my job/industry",
             "question_type": 2
         }
     },
@@ -139,7 +139,7 @@
         "model": "cultureallapi.Question",
         "pk": 18,
         "fields": {
-            "question_text": "“My work/life balance is good",
+            "question_text": "My work/life balance is good",
             "question_type": 3
         }
     },

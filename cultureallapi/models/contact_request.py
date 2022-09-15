@@ -7,3 +7,4 @@ class ContactRequest(models.Model):
     phone_number = models.CharField(max_length=20)
     reason = models.TextField()
     contact_by_phone = models.BooleanField()
+    completed = models.BooleanField(False)

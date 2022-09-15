@@ -3,28 +3,32 @@
         "model": "cultureallapi.QuestionType",
         "pk": 1,
         "fields": {
-            "type": "Functional Job Support"
+            "type": "Functional Job Support",
+            "companies": [3]
         }
     },
     {
         "model": "cultureallapi.QuestionType",
         "pk": 2,
         "fields": {
-            "type": "Professional Growth"
+            "type": "Professional Growth",
+            "companies": [3]
         }
     },
     {
         "model": "cultureallapi.QuestionType",
         "pk": 3,
         "fields": {
-            "type": "Company Culture"
+            "type": "Company Culture",
+            "companies": [3]
         }
     },
     {
         "model": "cultureallapi.QuestionType",
         "pk": 4,
         "fields": {
-            "type": "Company Perks"
+            "type": "Company Perks",
+            "companies": [3]
         }
     }
 ]

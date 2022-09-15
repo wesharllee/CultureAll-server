@@ -34,7 +34,7 @@ class ContactRequestView(ViewSet):
         return Response(serializer.data)
 
     def create(self, request):
-        """Handl Post Operations
+        """Handle Post Operations
 
         Returns:
             response -- JSON serialized request instance
@@ -42,10 +42,11 @@ class ContactRequestView(ViewSet):
 
         contact_request = ContactRequest.objects.create(
             email=request.data["email"], 
-            first_name=request.data[first_name],
+            first_name=request.data["first_name"],
             last_name=request.data["last_name"],
             phone_number=request.data["phone_number"],
-            contact_by_phone=int(request.data["contact_by_phone"])
+            contact_by_phone=int(request.data["contact_by_phone"]),
+            completed=request.data["completed"]
         )
 
         serializer = ContactSerializer(contact_request)
@@ -58,14 +59,15 @@ class ContactRequestView(ViewSet):
             Response -- Empty body with 204 status code
         """
 
-        request = ContactRequest.objects.get(pk=pk)
-        request.email = request.data["email"]
-        request.first_name = request.data["first_name"]
-        request.last_name = request.data["last_name"]
-        request.phone_number = request.data["phone_number"]
-        request.contact_by_phone = request.data["contact_by_phone"]
+        contact_request = ContactRequest.objects.get(pk=pk)
+        contact_request.email = request.data["email"]
+        contact_request.first_name = request.data["first_name"]
+        contact_request.last_name = request.data["last_name"]
+        contact_request.phone_number = request.data["phone_number"]
+        contact_request.contact_by_phone = request.data["contact_by_phone"]
+        contact_request.completed = request.data["completed"]
         
-        request.save()
+        contact_request.save()
 
         return Response(None, status=status.HTTP_204_NO_CONTENT)
 
@@ -78,5 +80,5 @@ class ContactSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ContactRequest
-        fields = ('id', 'email', 'first_name', 'last_name', 'phone_number', 'contact_by_phone')
+        fields = ('id', 'email', 'first_name', 'last_name', 'phone_number', 'contact_by_phone', 'completed')
         depth = 1

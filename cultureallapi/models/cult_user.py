@@ -7,3 +7,4 @@ class CultUser(models.Model):
     company_name = models.CharField(max_length=20)
     phone_number = models.CharField(max_length=20)
     terms_signed = models.BooleanField(default=False)
+    

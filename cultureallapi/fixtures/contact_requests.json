@@ -8,7 +8,8 @@
             "last_name": "Admirer",
             "phone_number": "404-404-4040",
             "reason": "I'm contacting you because in addition to being a lovely individual, you are also devastatingly handsome",
-            "contact_by_phone": true
+            "contact_by_phone": true,
+            "completed": false
         }
     }
 ]

@@ -6,6 +6,7 @@ class ConsultationRequest(models.Model):
     time = models.TimeField()
     in_person = models.BooleanField()
     address = models.CharField(max_length=50,null=True)
+    completed = models.BooleanField(False)
 
     @property
     def readable_time(self):

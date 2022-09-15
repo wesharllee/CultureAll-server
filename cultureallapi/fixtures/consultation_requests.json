@@ -7,7 +7,8 @@
             "date": "2022-10-31",
             "time": "15:00:00",
             "in_person": true,
-            "address": "404 SomePlace Dr, FileNotFound, TN, 40404"
+            "address": "404 SomePlace Dr, FileNotFound, TN, 40404",
+            "completed": false
         }
     }
 ]

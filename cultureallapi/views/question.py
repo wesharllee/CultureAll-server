@@ -3,6 +3,7 @@ from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
 from cultureallapi.models import Question
+from cultureallapi.models.answer import Answer
 from cultureallapi.models.question_type import QuestionType
 
 
@@ -56,9 +57,15 @@ class QuestionView(ViewSet):
         question.delete()
         return Response(None, status=status.HTTP_204_NO_CONTENT)
 
-class QuestionSerializer(serializers.ModelSerializer):
+class AnswerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Answer
+        fields = ('id', 'rating_value')
+        depth = 1
 
+class QuestionSerializer(serializers.ModelSerializer):
+    answers = AnswerSerializer(many=True)
     class Meta:
         model = Question
-        fields = ('id', 'question_text', 'question_type')
-        depth = 1
+        fields = ('id', 'question_text', 'question_type', 'answers')
+        depth = 2

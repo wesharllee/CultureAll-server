@@ -1,9 +1,12 @@
+from dataclasses import fields
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
 from rest_framework.decorators import action
 from django.contrib.auth.models import User
 from cultureallapi.models import CultUser, Answer
+from cultureallapi.models.question import Question
+from cultureallapi.models.question_type import QuestionType
 
 
 class CultUserView(ViewSet):
@@ -37,6 +40,10 @@ class CultUserView(ViewSet):
         user = User.objects.get(pk=pk)
         cult_user = CultUser.objects.get(user=request.auth.user)
         user.is_staff = not user.is_staff
+        user.save()
+        serializer = UserSerializer(user)
+        serializer = CultUserSerializer(cult_user)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
     @action(methods=["put"], detail=True)
@@ -45,6 +52,15 @@ class CultUserView(ViewSet):
         
         cult_user.user.is_staff = not cult_user.user.is_staff
         cult_user.user.save()
+        serializer = UserSerializer(cult_user.user)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    @action(methods=["put"], detail=True)
+    def change_terms_status(self, request, pk):
+        cult_user = CultUser.objects.get(pk=pk)
+        
+        cult_user.terms_signed = not cult_user.terms_signed
+        cult_user.save()
         serializer = UserSerializer(cult_user.user)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -62,15 +78,30 @@ class UserSerializer(serializers.ModelSerializer):
 class AnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Answer
-        fields = ('id', 'rating_value', 'question')
+        fields = ('id', 'rating_value')
+        depth = 1
+
+class QuestionSerializer(serializers.ModelSerializer):
+    answers = AnswerSerializer(many=True)
+    class Meta:
+        model = Question
+        fields = ('id', 'question_text', 'answers')
+        depth = 1
+
+class QuestionTypeSerializer(serializers.ModelSerializer):
+    questions = QuestionSerializer(many=True)
+    class Meta:
+        model = QuestionType
+        fields = ('id', 'type', 'questions')
         depth = 2
 
 
 class CultUserSerializer(serializers.ModelSerializer):
     """JSON serializer for CultUsers"""
     user = UserSerializer()
-    answers = AnswerSerializer(many=True)
+    # answers = AnswerSerializer(many=True)
+    question_types = QuestionTypeSerializer(many=True)
     class Meta:
         model = CultUser
-        fields = ('id', 'user', 'company_name', 'phone_number', 'terms_signed', 'answers', 'question_types')
+        fields = ('id', 'user', 'company_name', 'phone_number', 'terms_signed', 'question_types')
         depth = 2
