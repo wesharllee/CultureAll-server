@@ -48,7 +48,7 @@ class ConsultationRequestView(ViewSet):
             time=request.data["time"],
             in_person=int(request.data["in_person"]),
             address=request.data.get("address"),
-            completed=request.data["completed"]
+            completed=False
         )
 
         serializer = ConsultationSerializer(consultation_request)

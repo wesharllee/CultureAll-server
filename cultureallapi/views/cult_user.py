@@ -7,9 +7,10 @@ from django.contrib.auth.models import User
 from cultureallapi.models import CultUser, Answer
 from cultureallapi.models.question import Question
 from cultureallapi.models.question_type import QuestionType
-
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 class CultUserView(ViewSet):
+    permission_classes=[IsAuthenticatedOrReadOnly]
     """Cult User view"""
 
     def retrieve(self, request, pk):
@@ -39,7 +40,7 @@ class CultUserView(ViewSet):
         """Response -- Empty body with 204 status code"""
         user = User.objects.get(pk=pk)
         cult_user = CultUser.objects.get(user=request.auth.user)
-        user.is_staff = not user.is_staff
+        # user.is_staff = not user.is_staff
         user.save()
         serializer = UserSerializer(user)
         serializer = CultUserSerializer(cult_user)
@@ -59,7 +60,8 @@ class CultUserView(ViewSet):
     def change_terms_status(self, request, pk):
         cult_user = CultUser.objects.get(pk=pk)
         
-        cult_user.terms_signed = not cult_user.terms_signed
+        # cult_user.terms_signed = not cult_user.terms_signed
+        cult_user.terms_signed = True
         cult_user.save()
         serializer = UserSerializer(cult_user.user)
         return Response(serializer.data, status=status.HTTP_200_OK)
@@ -86,7 +88,7 @@ class QuestionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Question
         fields = ('id', 'question_text', 'answers')
-        depth = 1
+        depth = 2
 
 class QuestionTypeSerializer(serializers.ModelSerializer):
     questions = QuestionSerializer(many=True)

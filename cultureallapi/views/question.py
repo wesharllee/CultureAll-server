@@ -1,15 +1,14 @@
-from django.http import HttpResponseServerError
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
 from cultureallapi.models import Question
 from cultureallapi.models.answer import Answer
 from cultureallapi.models.question_type import QuestionType
-
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 class QuestionView(ViewSet): 
     """Question View"""
-
+    permission_classes=[IsAuthenticatedOrReadOnly]
     def retrieve(self, request, pk):
         """Handle GET requests for single Question
         

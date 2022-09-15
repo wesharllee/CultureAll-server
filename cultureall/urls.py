@@ -19,6 +19,8 @@ from django.urls import path
 from cultureallapi.views import register_user, login_user, ConsultationRequestView, ContactRequestView, QuestionView, QuestionTypeView, CultUserView
 from rest_framework import routers
 
+from cultureallapi.views.answer import AnswerView
+
 
 
 """remove need for / at the end of url"""
@@ -28,6 +30,7 @@ router.register(r'contactrequests', ContactRequestView, 'contactrequest')
 router.register(r'questions', QuestionView, 'question')
 router.register(r'questiontypes', QuestionTypeView, 'questiontype')
 router.register(r'users', CultUserView, 'user')
+router.register(r'answers', AnswerView, 'answer')
 
 urlpatterns = [
     path('register', register_user),

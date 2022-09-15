@@ -4,8 +4,10 @@ from rest_framework.response import Response
 from rest_framework import serializers, status
 from cultureallapi.models import ContactRequest
 from cultureallapi.models.cult_user import CultUser
+from rest_framework.permissions import AllowAny
 
 class ContactRequestView(ViewSet): 
+    permission_classes=[AllowAny]
     """Contact Request View"""
 
     def retrieve(self, request, pk):
@@ -46,7 +48,7 @@ class ContactRequestView(ViewSet):
             last_name=request.data["last_name"],
             phone_number=request.data["phone_number"],
             contact_by_phone=int(request.data["contact_by_phone"]),
-            completed=request.data["completed"]
+            completed=False
         )
 
         serializer = ContactSerializer(contact_request)

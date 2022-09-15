@@ -5,3 +5,4 @@ from .consultation_request import ConsultationRequestView
 from .contact_request import ContactRequestView
 from .question import QuestionView
 from .question_type import QuestionTypeView
+from .answer import AnswerView
