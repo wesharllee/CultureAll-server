@@ -66,7 +66,7 @@ class ContactRequestView(ViewSet):
         contact_request.first_name = request.data["first_name"]
         contact_request.last_name = request.data["last_name"]
         contact_request.phone_number = request.data["phone_number"]
-        contact_request.contact_by_phone = request.data["contact_by_phone"]
+        contact_request.contact_by_phone = int(request.data["contact_by_phone"])
         contact_request.completed = request.data["completed"]
         
         contact_request.save()
