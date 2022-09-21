@@ -64,13 +64,14 @@ class ConsultationRequestView(ViewSet):
         consult_request = ConsultationRequest.objects.get(pk=pk)
         consult_request.date = request.data["date"]
         consult_request.time = request.data["time"]
-        consult_request.in_person = request.data["in_person"]
+        consult_request.in_person = int(request.data["in_person"])
         consult_request.address = request.data["address"]
-        consult_request.completed = request.data["completed"]
+        if request.data.get("completed"):  
+            consult_request.completed = request.data["completed"]
 
-        cult_user = CultUser.objects.get(pk=request.auth.user)
-        request.cult_user = cult_user
-        request.save()
+        # cult_user = CultUser.objects.get(pk=request.auth.user)
+        # request.cult_user = cult_user
+        consult_request.save()
 
         return Response(None, status=status.HTTP_204_NO_CONTENT)
 
