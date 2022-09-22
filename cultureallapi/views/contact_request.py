@@ -46,6 +46,7 @@ class ContactRequestView(ViewSet):
             email=request.data["email"], 
             first_name=request.data["first_name"],
             last_name=request.data["last_name"],
+            reason=request.data["reason"],
             phone_number=request.data["phone_number"],
             contact_by_phone=int(request.data["contact_by_phone"]),
             completed=False
@@ -65,6 +66,7 @@ class ContactRequestView(ViewSet):
         contact_request.email = request.data["email"]
         contact_request.first_name = request.data["first_name"]
         contact_request.last_name = request.data["last_name"]
+        contact_request.reason = request.data["reason"]
         contact_request.phone_number = request.data["phone_number"]
         contact_request.contact_by_phone = int(request.data["contact_by_phone"])
         contact_request.completed = request.data["completed"]
@@ -82,5 +84,5 @@ class ContactSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ContactRequest
-        fields = ('id', 'email', 'first_name', 'last_name', 'phone_number', 'contact_by_phone', 'completed')
+        fields = ('id', 'email', 'first_name', 'last_name', 'reason', 'phone_number', 'contact_by_phone', 'completed')
         depth = 1
