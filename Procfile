@@ -1,0 +1,1 @@
+web: gunicorn cultureall.wsgi --log-file -
